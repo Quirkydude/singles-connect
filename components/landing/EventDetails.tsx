@@ -2,41 +2,39 @@ import { CONFERENCE } from '@/lib/constants'
 
 export function EventDetails() {
   return (
-    <section id="details" className="bg-[var(--color-surface)] py-20 px-4 sm:px-6">
-      <div className="max-w-6xl mx-auto space-y-16">
+    <section id="details" className="bg-[var(--color-surface)] py-14 sm:py-20 px-4 sm:px-6">
+      <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
 
         {/* Theme Banner */}
         <div
-          className="relative overflow-hidden rounded-3xl text-white px-8 py-10 sm:px-12 sm:py-14 text-center shadow-2xl"
+          className="relative overflow-hidden rounded-2xl sm:rounded-3xl text-white px-6 py-8 sm:px-12 sm:py-14 text-center shadow-2xl"
           style={{ background: 'linear-gradient(135deg, #1a0030 0%, #3b0764 50%, #5a0080 100%)' }}
         >
-          {/* Decorative hearts */}
           <div className="absolute right-0 top-0 opacity-10 pointer-events-none">
-            <svg viewBox="0 0 200 180" className="w-64 h-64" fill="white">
+            <svg viewBox="0 0 200 180" className="w-40 h-40 sm:w-64 sm:h-64" fill="white">
               <path d="M100 160 L15 75 C-5 55 -5 25 15 10 C35 -5 65 0 80 20 L100 45 L120 20 C135 0 165 -5 185 10 C205 25 205 55 185 75 Z" />
             </svg>
           </div>
-          <p className="text-xs uppercase tracking-[0.3em] text-white/50 font-bold mb-4">Conference Theme</p>
-          <p className="text-xs sm:text-sm italic text-[#f472b6] font-medium mb-2">Theme:</p>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black mb-3 leading-tight">
+          <p className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-white/50 font-bold mb-3 sm:mb-4">Conference Theme</p>
+          <h2 className="text-xl sm:text-3xl lg:text-4xl font-black mb-3 leading-tight">
             &ldquo;{CONFERENCE.theme}&rdquo;
           </h2>
-          <p className="text-white/60 text-sm font-medium tracking-wide">
+          <p className="text-white/60 text-xs sm:text-sm font-medium tracking-wide">
             {CONFERENCE.scripture}
           </p>
         </div>
 
         {/* Section heading */}
         <div className="text-center">
-          <h2 className="text-2xl sm:text-3xl font-black text-[var(--color-primary)] mb-3">Conference Details</h2>
+          <h2 className="text-xl sm:text-3xl font-black text-[var(--color-primary)] mb-3">Conference Details</h2>
           <div className="w-12 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, #db0073, #f0329a)' }} />
           <p className="text-gray-500 max-w-xl mx-auto text-sm sm:text-base mt-4">
             Join us for an inspiring gathering of singles in the Assin Fosu Area as we celebrate faith, community, and purpose.
           </p>
         </div>
 
-        {/* Detail cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* Detail cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {[
             {
               icon: (
@@ -87,16 +85,16 @@ export function EventDetails() {
             {
               icon: (
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                 </svg>
               ),
-              label: 'Disclaimer',
-              value: CONFERENCE.disclaimer,
+              label: 'Rate',
+              value: 'GH₵ 600 — Registration is FREE online',
             },
           ].map((item) => (
             <div
               key={item.label}
-              className="bg-white rounded-2xl border border-[var(--color-border)] p-5 flex gap-4 items-start shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
+              className="bg-white rounded-2xl border border-[var(--color-border)] p-4 sm:p-5 flex gap-3 sm:gap-4 items-start shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
             >
               <div
                 className="w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0"
@@ -104,17 +102,31 @@ export function EventDetails() {
               >
                 {item.icon}
               </div>
-              <div>
-                <p className="text-xs font-bold text-[var(--color-muted)] uppercase tracking-wide mb-1">{item.label}</p>
-                <p className="text-sm font-medium text-gray-800">{item.value}</p>
+              <div className="min-w-0">
+                <p className="text-xs font-bold text-[var(--color-muted)] uppercase tracking-wide mb-0.5">{item.label}</p>
+                <p className="text-sm font-medium text-gray-800 leading-snug">{item.value}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Conference package */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div className="rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-sm">
+        {/* Disclaimer card */}
+        <div
+          className="rounded-2xl border p-4 sm:p-5 flex items-start gap-3"
+          style={{ background: 'rgba(219,0,115,0.05)', borderColor: 'rgba(219,0,115,0.2)' }}
+        >
+          <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p className="text-sm font-medium text-gray-700">
+            <span className="font-bold text-[var(--color-accent)] uppercase tracking-wide text-xs block mb-0.5">Disclaimer</span>
+            {CONFERENCE.disclaimer}
+          </p>
+        </div>
+
+        {/* Conference package + follow-up */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          <div className="rounded-2xl border border-[var(--color-border)] bg-white p-5 sm:p-6 shadow-sm">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0"
                 style={{ background: 'linear-gradient(135deg, #3b0764, #5a0080)' }}>
@@ -122,19 +134,21 @@ export function EventDetails() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                 </svg>
               </div>
-              <h3 className="font-bold text-gray-900">Conference Package</h3>
+              <h3 className="font-bold text-gray-900 text-sm sm:text-base">Conference Package</h3>
             </div>
             <ul className="space-y-2">
               {CONFERENCE.conferencePackage.map((item) => (
-                <li key={item} className="flex items-center gap-2 text-sm text-gray-700">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-accent)] shrink-0" />
+                <li key={item} className="flex items-center gap-2.5 text-sm text-gray-700">
+                  <svg className="w-4 h-4 text-[var(--color-accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
                   {item}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="rounded-2xl border border-[var(--color-border)] bg-white p-6 shadow-sm">
+          <div className="rounded-2xl border border-[var(--color-border)] bg-white p-5 sm:p-6 shadow-sm">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0"
                 style={{ background: 'linear-gradient(135deg, #db0073, #f0329a)' }}>
@@ -142,9 +156,9 @@ export function EventDetails() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="font-bold text-gray-900">Follow-up Programme</h3>
+              <h3 className="font-bold text-gray-900 text-sm sm:text-base">Follow-up Programme</h3>
             </div>
-            <p className="text-sm text-gray-700">{CONFERENCE.followUp}</p>
+            <p className="text-sm text-gray-700 leading-relaxed">{CONFERENCE.followUp}</p>
           </div>
         </div>
 
@@ -152,4 +166,5 @@ export function EventDetails() {
     </section>
   )
 }
+
 

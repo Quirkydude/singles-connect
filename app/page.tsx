@@ -17,11 +17,13 @@ export default function Home() {
       <EventDetails />
       <RegisterCTA />
       <footer
-        className="text-white/50 text-xs text-center py-5 px-6"
+        className="text-white/40 text-xs text-center py-6 px-4"
         style={{ background: '#1a0030' }}
       >
-        <p className="mb-1">© 2026 {CONFERENCE.church} · {CONFERENCE.area}. All rights reserved.</p>
-        <p>Theme: &ldquo;{CONFERENCE.theme}&rdquo; · {CONFERENCE.scripture}</p>
+        <div className="max-w-4xl mx-auto space-y-1">
+          <p>© 2026 {CONFERENCE.church} · {CONFERENCE.area}. All rights reserved.</p>
+          <p>Theme: &ldquo;{CONFERENCE.theme}&rdquo; · <span className="text-white/25">{CONFERENCE.scripture}</span></p>
+        </div>
       </footer>
     </main>
   )

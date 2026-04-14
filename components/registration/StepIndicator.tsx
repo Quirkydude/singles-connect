@@ -10,7 +10,7 @@ const steps = [
 
 export function StepIndicator({ currentStep }: StepIndicatorProps) {
   return (
-    <div className="flex items-center justify-center gap-0 mb-8">
+    <div className="flex items-center justify-center mb-8">
       {steps.map((step, idx) => {
         const isDone = step.number < currentStep
         const isActive = step.number === currentStep
@@ -20,13 +20,14 @@ export function StepIndicator({ currentStep }: StepIndicatorProps) {
             <div className="flex flex-col items-center gap-1.5">
               <div
                 className={[
-                  'w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold border-2 transition-colors',
+                  'w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all',
                   isDone
-                    ? 'bg-[var(--color-primary)] border-[var(--color-primary)] text-white'
+                    ? 'text-white border-transparent'
                     : isActive
-                    ? 'border-[var(--color-primary)] text-[var(--color-primary)] bg-white'
-                    : 'border-gray-300 text-gray-400 bg-white',
+                    ? 'border-[var(--color-primary)] text-[var(--color-primary)] bg-white shadow-md shadow-[var(--color-primary)]/20'
+                    : 'border-gray-200 text-gray-400 bg-white',
                 ].join(' ')}
+                style={isDone ? { background: 'linear-gradient(135deg, #3b0764, #db0073)', borderColor: 'transparent' } : {}}
               >
                 {isDone ? (
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -38,8 +39,8 @@ export function StepIndicator({ currentStep }: StepIndicatorProps) {
               </div>
               <span
                 className={[
-                  'text-xs font-medium whitespace-nowrap',
-                  isActive ? 'text-[var(--color-primary)]' : isDone ? 'text-gray-600' : 'text-gray-400',
+                  'text-xs font-semibold whitespace-nowrap',
+                  isActive ? 'text-[var(--color-primary)]' : isDone ? 'text-gray-500' : 'text-gray-300',
                 ].join(' ')}
               >
                 {step.label}
@@ -48,9 +49,10 @@ export function StepIndicator({ currentStep }: StepIndicatorProps) {
             {idx < steps.length - 1 && (
               <div
                 className={[
-                  'h-0.5 w-16 sm:w-24 mb-5 mx-2',
-                  isDone ? 'bg-[var(--color-primary)]' : 'bg-gray-200',
+                  'h-0.5 w-10 xs:w-14 sm:w-20 mb-5 mx-1 sm:mx-2 rounded-full transition-all',
+                  isDone ? 'opacity-100' : 'bg-gray-200',
                 ].join(' ')}
+                style={isDone ? { background: 'linear-gradient(90deg, #3b0764, #db0073)' } : {}}
               />
             )}
           </div>
