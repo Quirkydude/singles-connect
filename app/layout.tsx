@@ -3,10 +3,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: 'Singles Connect Conference 2026',
-    template: '%s | Singles Connect Conference 2026',
+    default: 'Singles Connect Conference 2026 — Assin Fosu Area',
+    template: '%s | SCC 2026',
   },
-  description: 'Register for the Singles Connect Conference 2026 — Assin Fosu Area, The Church of Pentecost. 30 April – 2 May 2026.',
+  description:
+    'Register for the Singles Connect Conference 2026 — Assin Fosu Area, The Church of Pentecost. Thur. 30th April – Sat. 2nd May 2026. Theme: Love, Singleness and Marriage.',
 };
 
 export default function RootLayout({

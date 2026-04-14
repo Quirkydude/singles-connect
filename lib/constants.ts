@@ -60,5 +60,11 @@ export const CONFERENCE = {
   startDate: 'Thursday, 30th April 2026',
   endDate: 'Saturday, 2nd May 2026',
   dateShort: 'THU 30TH APRIL – SAT 2ND MAY 2026',
+  startDateISO: '2026-04-30T00:00:00',
   refPrefix: 'SCC2026',
+  theme: 'Love, Singleness and Marriage',
+  scripture: '1 Corinthians 7:6-9, Genesis 2:18',
+  disclaimer: 'For persons aged 21 years and above',
+  followUp: 'Follow-up programme on Monday 4th May 2026 at Area, District and Local Level',
+  conferencePackage: ['Accommodation', 'Candlelight Dinner', 'Conference Souvenirs'],
 }

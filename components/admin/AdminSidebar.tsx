@@ -19,8 +19,8 @@ export function AdminSidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="w-56 shrink-0 bg-white border-r border-[var(--color-border)] h-full">
-      <nav className="p-3 space-y-1">
+    <aside className="w-52 shrink-0 bg-white border-r border-[var(--color-border)] h-full">
+      <nav className="p-3 space-y-1 pt-4">
         {navItems.map((item) => {
           const isActive = pathname.startsWith(item.href)
           return (
@@ -28,13 +28,14 @@ export function AdminSidebar() {
               key={item.href}
               href={item.href}
               className={[
-                'flex items-center gap-2.5 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
+                'flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors',
                 isActive
-                  ? 'bg-[var(--color-primary)]/10 text-[var(--color-primary)]'
-                  : 'text-gray-600 hover:bg-[var(--color-surface)] hover:text-gray-900',
+                  ? 'text-white'
+                  : 'text-gray-600 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)]',
               ].join(' ')}
+              style={isActive ? { background: 'linear-gradient(135deg, #3b0764, #db0073)' } : {}}
             >
-              <span className={isActive ? 'text-[var(--color-primary)]' : 'text-gray-400'}>{item.icon}</span>
+              <span className={isActive ? 'text-white' : 'text-gray-400'}>{item.icon}</span>
               {item.label}
             </Link>
           )
@@ -43,3 +44,4 @@ export function AdminSidebar() {
     </aside>
   )
 }
+

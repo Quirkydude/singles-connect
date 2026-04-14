@@ -3,41 +3,51 @@ import { CONFERENCE } from '@/lib/constants'
 
 export function RegisterCTA() {
   return (
-    <section className="bg-white py-16 px-6 border-t border-[var(--color-border)]">
-      <div className="max-w-3xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)]/10 border border-[var(--color-accent)]/30 px-4 py-1.5 text-sm text-[var(--color-accent)] font-medium mb-6">
-          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-          </svg>
+    <section
+      className="relative overflow-hidden py-20 px-4 sm:px-6 text-white"
+      style={{ background: 'linear-gradient(135deg, #1a0030 0%, #3b0764 50%, #5a0080 100%)' }}
+    >
+      {/* Decorative glow */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full opacity-20 blur-3xl pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #db0073, transparent 70%)' }}
+      />
+
+      <div className="relative max-w-3xl mx-auto text-center">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-1.5 text-xs font-bold tracking-wide text-white/80 uppercase mb-8">
+          <span className="w-2 h-2 rounded-full bg-[var(--color-accent)] animate-pulse" />
           Registration is Open
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-bold text-[var(--color-primary)] mb-4">
-          Secure Your Spot Today
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4">
+          Secure Your Spot<br />
+          <span style={{ color: '#f472b6' }}>Today!</span>
         </h2>
-        <p className="text-gray-500 text-base sm:text-lg mb-3 max-w-xl mx-auto">
-          Don't miss out on this life-changing conference. Registration is free — complete the form and await your confirmation.
+        <p className="text-white/70 text-base sm:text-lg mb-4 max-w-xl mx-auto">
+          Don&apos;t miss out on this life-changing conference. Complete the registration form and await your confirmation.
         </p>
-        <p className="text-sm text-[var(--color-muted)] mb-10">
+        <p className="text-white/50 text-sm mb-10 font-medium">
           {CONFERENCE.startDate} – {CONFERENCE.endDate}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/register"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] text-white px-10 py-4 text-base font-semibold transition-colors shadow-md shadow-[var(--color-primary)]/20"
-          >
-            Register Now — It&apos;s Free
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
-        </div>
+        {/* Register button */}
+        <Link
+          href="/register"
+          className="inline-flex items-center justify-center gap-2 rounded-2xl px-12 py-5 text-lg font-black text-white transition-all hover:opacity-90 active:scale-95 shadow-2xl"
+          style={{ background: 'linear-gradient(135deg, #db0073, #f0329a)' }}
+        >
+          REGISTER NOW — IT&apos;S FREE
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </Link>
 
-        <p className="mt-6 text-xs text-gray-400">
+        <p className="mt-8 text-xs text-white/40">
           Organised by {CONFERENCE.church} · {CONFERENCE.area}
         </p>
       </div>
     </section>
   )
 }
+
