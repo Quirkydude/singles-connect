@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Registration {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Step 1 — Personal Info
+  firstName       String
+  lastName        String
+  middleName      String?
+  gender          String
+  email           String  @unique
+  phone           String
+  participantType String
+  title           String?
+  designation     String?
+  isNonCOP        Boolean @default(false)
+
+  // Region/Area locked automatically
+  region          String  @default("Central")
+  area            String  @default("Assin Fosu")
+
+  // Step 2 — Venue Selection
+  venue           String? // "PCC" | "KNUST"
+
+  // Admin / status tracking
+  status          String  @default("pending") // pending | confirmed | cancelled
+  confirmationRef String? @unique             // SCC2026-0001
+  notes           String?
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}

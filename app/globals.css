@@ -10,17 +10,20 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* COP Singles Connect brand colors */
+  --color-primary: #7c1f2e;        /* Deep burgundy/red */
+  --color-primary-dark: #5a1520;
+  --color-primary-light: #9e2d40;
+  --color-accent: #c9973a;         /* Gold */
+  --color-accent-light: #e4b96a;
+  --color-surface: #faf7f5;        /* Warm off-white */
+  --color-muted: #8b7d7d;
+  --color-border: #e8ddd9;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
