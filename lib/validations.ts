@@ -4,19 +4,17 @@ export const step1Schema = z.object({
   firstName: z.string().min(1, 'First name is required'),
   lastName: z.string().min(1, 'Last name is required'),
   middleName: z.string().optional(),
-  gender: z.enum(['male', 'female'], { required_error: 'Gender is required' }),
+  gender: z.enum(['male', 'female'], 'Gender is required'),
   email: z.string().email('Invalid email address'),
   phone: z.string().min(10, 'Phone number must be at least 10 digits').regex(/^[0-9+\s()-]+$/, 'Invalid phone number'),
-  participantType: z.enum(['single', 'facilitator', 'minister', 'guest'], {
-    required_error: 'Participant type is required',
-  }),
+  participantType: z.enum(['single', 'facilitator', 'minister', 'guest'], 'Participant type is required'),
   title: z.string().optional(),
   designation: z.string().optional(),
   isNonCOP: z.boolean().default(false),
 })
 
 export const step2Schema = z.object({
-  venue: z.enum(['PCC', 'KNUST'], { required_error: 'Please select a venue' }),
+  venue: z.enum(['PCC', 'KNUST'], 'Please select a venue'),
 })
 
 export const registrationSchema = step1Schema.merge(step2Schema).extend({
