@@ -4,7 +4,10 @@ import { cookies } from 'next/headers'
 const SESSION_COOKIE = 'scc_admin_session'
 
 function getKey() {
-  const secret = process.env.SESSION_SECRET ?? ''
+  const secret = process.env.SESSION_SECRET
+  if (!secret || secret.length < 32) {
+    throw new Error('SESSION_SECRET environment variable is required and must be at least 32 characters')
+  }
   return new TextEncoder().encode(secret)
 }
 

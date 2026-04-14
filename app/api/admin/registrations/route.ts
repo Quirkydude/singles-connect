@@ -36,7 +36,11 @@ export async function GET(request: NextRequest) {
       ...all.map((r) =>
         headers.map((h) => {
           const v = (r as Record<string, unknown>)[h]
-          return typeof v === 'string' && v.includes(',') ? `"${v}"` : String(v ?? '')
+          const str = String(v ?? '')
+          const escaped = str.replace(/"/g, '""')
+          return escaped.includes(',') || escaped.includes('"') || escaped.includes('\n')
+            ? `"${escaped}"`
+            : escaped
         }).join(',')
       ),
     ].join('\n')
