@@ -21,11 +21,11 @@ export function RegisterCTA() {
         </div>
 
         <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black leading-tight mb-4">
-          Secure Your Spot<br />
+          Reserve Your Spot<br />
           <span style={{ color: '#f472b6' }}>Today!</span>
         </h2>
         <p className="text-white/70 text-sm sm:text-lg mb-3 max-w-xl mx-auto">
-          Don&apos;t miss out on this life-changing conference. Complete the registration form and await your confirmation.
+          Secure your place at the conference by completing the reservation form. The conference team will follow up with payment details.
         </p>
         <p className="text-white/50 text-xs sm:text-sm mb-8 sm:mb-10 font-medium">
           {CONFERENCE.startDate} – {CONFERENCE.endDate}
@@ -33,12 +33,12 @@ export function RegisterCTA() {
 
         {/* Register button — full width on mobile */}
         <div className="px-0 sm:px-8">
-          <Link
+        <Link
             href="/register"
             className="flex sm:inline-flex items-center justify-center gap-2 rounded-2xl px-8 py-4 sm:py-5 text-base sm:text-lg font-black text-white transition-all hover:opacity-90 active:scale-95 shadow-2xl w-full sm:w-auto"
             style={{ background: 'linear-gradient(135deg, #db0073, #f0329a)' }}
           >
-            REGISTER NOW — IT&apos;S FREE
+            RESERVE YOUR SPOT — {CONFERENCE.conferenceRate}
             <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>

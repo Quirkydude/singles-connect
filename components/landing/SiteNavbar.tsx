@@ -52,6 +52,15 @@ export function SiteNavbar() {
               </svg>
               EVENTS
             </a>
+            <Link
+              href="/my-registration"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
+            >
+              <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+              MY RESERVATION
+            </Link>
           </nav>
 
           <div className="flex items-center gap-2">
@@ -121,6 +130,16 @@ export function SiteNavbar() {
                 </svg>
                 Events & Details
               </a>
+              <Link
+                href="/my-registration"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
+              >
+                <svg className="w-5 h-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                View My Reservation
+              </Link>
               <div className="pt-2 pb-1">
                 <Link
                   href="/register"
@@ -131,7 +150,7 @@ export function SiteNavbar() {
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
-                  Register Now — It&apos;s Free
+                  Reserve Your Spot
                 </Link>
               </div>
             </div>

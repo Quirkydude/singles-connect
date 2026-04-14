@@ -74,17 +74,17 @@ export default async function RegistrationsPage(props: Props) {
   ]
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5 sm:space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold text-gray-900">Registrations</h1>
+        <h1 className="text-lg sm:text-xl font-bold text-gray-900">Registrations</h1>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
         {statCards.map((s) => (
-          <div key={s.label} className={`${s.bg} rounded-xl border border-[var(--color-border)] p-4`}>
-            <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">{s.label}</p>
-            <p className={`text-2xl font-bold ${s.color}`}>{s.value}</p>
+          <div key={s.label} className={`${s.bg} rounded-xl border border-[var(--color-border)] p-3 sm:p-4`}>
+            <p className="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wide mb-0.5 sm:mb-1">{s.label}</p>
+            <p className={`text-xl sm:text-2xl font-bold ${s.color}`}>{s.value}</p>
           </div>
         ))}
       </div>
@@ -92,7 +92,7 @@ export default async function RegistrationsPage(props: Props) {
       {/* Filters */}
       <FilterBar status={status} participantType={participantType} search={search} />
 
-      {/* Table */}
+      {/* Table / Card list */}
       <div className="bg-white rounded-xl border border-[var(--color-border)] overflow-hidden shadow-sm">
         <RegistrationsTable registrations={registrations.map(r => ({
           ...r,
@@ -102,13 +102,13 @@ export default async function RegistrationsPage(props: Props) {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between text-sm text-gray-500">
-          <p>Showing {(page - 1) * perPage + 1}–{Math.min(page * perPage, total)} of {total}</p>
+        <div className="flex items-center justify-between text-sm text-gray-500 flex-wrap gap-3">
+          <p className="text-xs">Showing {(page - 1) * perPage + 1}–{Math.min(page * perPage, total)} of {total}</p>
           <div className="flex gap-2">
             {page > 1 && (
               <Link
                 href={`/admin/registrations?${new URLSearchParams({ ...(status && { status }), ...(participantType && { type: participantType }), ...(search && { search }), page: String(page - 1) })}`}
-                className="px-3 py-1.5 rounded-lg border border-[var(--color-border)] hover:bg-[var(--color-surface)] transition-colors"
+                className="px-3 py-2 rounded-lg border border-[var(--color-border)] hover:bg-[var(--color-surface)] transition-colors text-xs min-h-[36px] flex items-center"
               >
                 ← Prev
               </Link>
@@ -116,7 +116,7 @@ export default async function RegistrationsPage(props: Props) {
             {page < totalPages && (
               <Link
                 href={`/admin/registrations?${new URLSearchParams({ ...(status && { status }), ...(participantType && { type: participantType }), ...(search && { search }), page: String(page + 1) })}`}
-                className="px-3 py-1.5 rounded-lg border border-[var(--color-border)] hover:bg-[var(--color-surface)] transition-colors"
+                className="px-3 py-2 rounded-lg border border-[var(--color-border)] hover:bg-[var(--color-surface)] transition-colors text-xs min-h-[36px] flex items-center"
               >
                 Next →
               </Link>

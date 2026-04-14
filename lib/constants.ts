@@ -67,4 +67,6 @@ export const CONFERENCE = {
   disclaimer: 'For persons aged 21 years and above',
   followUp: 'Follow-up programme on Monday 4th May 2026 at Area, District and Local Level',
   conferencePackage: ['Accommodation', 'Candlelight Dinner', 'Conference Souvenirs'],
+  conferenceRate: 'GH₵ 600',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://singles-connect.vercel.app',
 }

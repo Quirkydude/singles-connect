@@ -88,7 +88,7 @@ export default function RegisterPage() {
             <RegistrationWizard />
           </div>
           <p className="text-center text-xs text-gray-400 mt-4 sm:mt-6 px-2">
-            {CONFERENCE.disclaimer} · No payment required
+            {CONFERENCE.disclaimer} · Conference rate: {CONFERENCE.conferenceRate} · Reservation is free — payment details will follow
           </p>
         </div>
       </div>

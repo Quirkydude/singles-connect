@@ -121,7 +121,7 @@ export function HeroBanner() {
                 className="inline-flex items-center justify-center gap-2 rounded-xl px-6 py-4 text-sm sm:text-base font-bold text-white transition-all hover:opacity-90 active:scale-95 shadow-xl w-full sm:w-auto"
                 style={{ background: 'linear-gradient(135deg, #db0073, #f0329a)' }}
               >
-                REGISTER NOW — FREE
+                RESERVE YOUR SPOT
                 <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>

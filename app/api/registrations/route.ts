@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/db'
 import { registrationSchema } from '@/lib/validations'
+import { sendReservationSMS } from '@/lib/sms'
+import { CONFERENCE } from '@/lib/constants'
 
 export async function POST(request: NextRequest) {
   try {
@@ -30,6 +32,15 @@ export async function POST(request: NextRequest) {
         venue: data.venue,
       },
     })
+
+    // Fire-and-forget SMS — do not block the response
+    sendReservationSMS({
+      phone: registration.phone,
+      firstName: registration.firstName,
+      registrationId: registration.id,
+      siteUrl: CONFERENCE.siteUrl,
+    }).catch((err) => console.error('[SMS] Failed to send reservation SMS:', err))
+
     return NextResponse.json(registration, { status: 201 })
   } catch (err: unknown) {
     const e = err as { code?: string }
