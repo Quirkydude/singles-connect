@@ -1,21 +1,39 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { CONFERENCE } from '@/lib/constants'
 
 export function SiteNavbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[var(--color-border)] shadow-sm">
+      <header
+        className={[
+          'sticky top-0 z-50 transition-all duration-300',
+          scrolled
+            ? 'bg-white/95 backdrop-blur-md border-b border-[var(--color-border)] shadow-md shadow-purple-900/10'
+            : 'bg-white/90 backdrop-blur-sm border-b border-[var(--color-border)]/60',
+        ].join(' ')}
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-3">
 
           {/* Logo / Brand */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0" onClick={() => setMenuOpen(false)}>
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 shrink-0 group"
+            onClick={() => setMenuOpen(false)}
+          >
             <div
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center shrink-0"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center shrink-0 shadow-md shadow-purple-900/30 transition-transform group-hover:scale-105"
               style={{ background: 'linear-gradient(135deg, #3b0764, #db0073)' }}
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
@@ -23,10 +41,10 @@ export function SiteNavbar() {
               </svg>
             </div>
             <div className="leading-tight min-w-0">
-              <span className="block text-xs sm:text-sm font-bold text-[var(--color-primary)] leading-none truncate">
+              <span className="block text-xs sm:text-sm font-black text-[var(--color-primary)] leading-none truncate">
                 Singles Connect
               </span>
-              <span className="block text-[10px] sm:text-xs text-[var(--color-muted)] leading-none mt-0.5 truncate">
+              <span className="block text-[9px] sm:text-[11px] text-[var(--color-muted)] leading-none mt-0.5 truncate font-medium">
                 Conference 2026
               </span>
             </div>
@@ -34,40 +52,75 @@ export function SiteNavbar() {
 
           {/* Desktop Nav links */}
           <nav className="hidden md:flex items-center gap-1">
-            <Link
-              href="/"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
-            >
-              <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-              HOME
-            </Link>
-            <a
-              href="#details"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
-            >
-              <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              EVENTS
-            </a>
-            <Link
-              href="/my-registration"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
-            >
-              <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-              MY RESERVATION
-            </Link>
+            {[
+              {
+                href: '/',
+                label: 'HOME',
+                icon: (
+                  <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                ),
+                isAnchor: false,
+              },
+              {
+                href: '#details',
+                label: 'DETAILS',
+                icon: (
+                  <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                ),
+                isAnchor: true,
+              },
+              {
+                href: '#programme',
+                label: 'PROGRAMME',
+                icon: (
+                  <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                ),
+                isAnchor: true,
+              },
+              {
+                href: '/my-registration',
+                label: 'MY RESERVATION',
+                icon: (
+                  <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                ),
+                isAnchor: false,
+              },
+            ].map((item) =>
+              item.isAnchor ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold text-gray-600 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-all tracking-wide"
+                >
+                  {item.icon}
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold text-gray-600 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-all tracking-wide"
+                >
+                  {item.icon}
+                  {item.label}
+                </Link>
+              )
+            )}
           </nav>
 
           <div className="flex items-center gap-2">
-            {/* Register CTA (always visible) */}
+            {/* Register CTA */}
             <Link
               href="/register"
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 sm:px-4 text-xs sm:text-sm font-bold text-white transition-all hover:opacity-90 active:scale-95 shadow-md shadow-[var(--color-accent)]/30 whitespace-nowrap"
+              className="flex items-center gap-1.5 rounded-xl px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-black text-white transition-all hover:opacity-90 active:scale-95 shadow-lg shadow-pink-900/30 whitespace-nowrap"
               style={{ background: 'linear-gradient(135deg, #db0073, #f0329a)' }}
             >
               <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -79,78 +132,105 @@ export function SiteNavbar() {
             {/* Hamburger — mobile only */}
             <button
               onClick={() => setMenuOpen((v) => !v)}
-              className="md:hidden p-2 rounded-lg text-[var(--color-primary)] hover:bg-[var(--color-surface)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
+              className="md:hidden p-2 rounded-xl text-[var(--color-primary)] hover:bg-[var(--color-surface)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
             >
-              {menuOpen ? (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
+              <div className="relative w-5 h-5">
+                <span
+                  className={[
+                    'absolute left-0 top-1 block h-0.5 w-5 bg-current rounded-full transition-all duration-200',
+                    menuOpen ? 'top-2.5 rotate-45' : '',
+                  ].join(' ')}
+                />
+                <span
+                  className={[
+                    'absolute left-0 top-2.5 block h-0.5 w-5 bg-current rounded-full transition-all duration-200',
+                    menuOpen ? 'opacity-0 translate-x-2' : '',
+                  ].join(' ')}
+                />
+                <span
+                  className={[
+                    'absolute left-0 top-4 block h-0.5 w-5 bg-current rounded-full transition-all duration-200',
+                    menuOpen ? 'top-2.5 -rotate-45' : '',
+                  ].join(' ')}
+                />
+              </div>
             </button>
           </div>
         </div>
 
-        {/* Area badge bar */}
+        {/* Conference info sub-bar */}
         <div
-          className="py-1 px-4 text-center text-[10px] sm:text-xs font-medium text-white/90 tracking-wide truncate"
-          style={{ background: 'linear-gradient(90deg, #3b0764, #5a0080, #3b0764)' }}
+          className="py-1 px-4 text-center text-[10px] sm:text-xs font-semibold text-white/85 tracking-wide truncate"
+          style={{ background: 'linear-gradient(90deg, #2d0050, #5a0080, #2d0050)' }}
         >
-          {CONFERENCE.church} · {CONFERENCE.area} · {CONFERENCE.dateShort}
+          {CONFERENCE.church} &nbsp;·&nbsp; {CONFERENCE.area} &nbsp;·&nbsp; {CONFERENCE.dateShort}
         </div>
 
         {/* Mobile dropdown menu */}
         {menuOpen && (
-          <nav
-            className="md:hidden border-t border-[var(--color-border)] bg-white"
-          >
+          <nav className="md:hidden border-t border-[var(--color-border)] bg-white/98 backdrop-blur-md">
             <div className="px-4 py-3 space-y-1">
               <Link
                 href="/"
                 onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
+                className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-bold text-gray-700 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
               >
-                <svg className="w-5 h-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
+                <div className="w-8 h-8 rounded-lg bg-[var(--color-surface)] flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                </div>
                 Home
               </Link>
               <a
                 href="#details"
                 onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
+                className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-bold text-gray-700 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
               >
-                <svg className="w-5 h-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Events & Details
+                <div className="w-8 h-8 rounded-lg bg-[var(--color-surface)] flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                Event Details
+              </a>
+              <a
+                href="#programme"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-bold text-gray-700 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
+              >
+                <div className="w-8 h-8 rounded-lg bg-[var(--color-surface)] flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                Programme
               </a>
               <Link
                 href="/my-registration"
                 onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-semibold text-gray-700 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
+                className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-bold text-gray-700 hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
               >
-                <svg className="w-5 h-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
+                <div className="w-8 h-8 rounded-lg bg-[var(--color-surface)] flex items-center justify-center shrink-0">
+                  <svg className="w-4 h-4 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  </svg>
+                </div>
                 View My Reservation
               </Link>
               <div className="pt-2 pb-1">
                 <Link
                   href="/register"
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full rounded-xl py-3.5 text-sm font-bold text-white transition-all hover:opacity-90"
+                  className="flex items-center justify-center gap-2 w-full rounded-2xl py-4 text-sm font-black text-white transition-all hover:opacity-90 shadow-lg shadow-pink-900/30"
                   style={{ background: 'linear-gradient(135deg, #db0073, #f0329a)' }}
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
-                  Reserve Your Spot
+                  Reserve Your Spot — FREE
                 </Link>
               </div>
             </div>

@@ -1,12 +1,16 @@
 /**
- * SMS Service — Africa's Talking REST API
+ * SMS Service — Arkesel API v2
+ *
+ * Arkesel is a Ghanaian bulk SMS provider with excellent local delivery.
  *
  * Configure with environment variables:
- *   AFRICASTALKING_API_KEY  — your Africa's Talking API key
- *   AFRICASTALKING_USERNAME — your Africa's Talking username (default: "sandbox")
- *   AFRICASTALKING_SENDER   — optional alphanumeric sender ID (e.g. "SCC2026")
+ *   ARKESEL_API_KEY   — your Arkesel API key (from arkesel.com dashboard)
+ *   ARKESEL_SENDER    — your approved sender name (e.g. "SCC2026")
+ *                       must be registered with Arkesel; defaults to "SCC2026"
  *
- * If AFRICASTALKING_API_KEY is not set the service only logs (safe for development).
+ * If ARKESEL_API_KEY is not set the service only logs (safe for development).
+ *
+ * Arkesel API docs: https://developers.arkesel.com
  */
 
 interface SMSResult {
@@ -14,52 +18,55 @@ interface SMSResult {
   error?: string
 }
 
-export async function sendSMS(to: string, message: string): Promise<SMSResult> {
-  const apiKey = process.env.AFRICASTALKING_API_KEY
-  const username = process.env.AFRICASTALKING_USERNAME ?? 'sandbox'
-  const sender = process.env.AFRICASTALKING_SENDER ?? ''
+/**
+ * Normalize Ghanaian phone numbers to international format (+233…)
+ */
+function normalizePhone(phone: string): string {
+  let p = phone.trim().replace(/[\s\-]/g, '')
+  if (p.startsWith('0')) return '+233' + p.slice(1)
+  if (p.startsWith('233')) return '+' + p
+  if (!p.startsWith('+')) return '+233' + p
+  return p
+}
 
-  // Normalize Ghanaian phone numbers to international format
-  let phone = to.trim().replace(/\s+/g, '')
-  if (phone.startsWith('0')) {
-    phone = '+233' + phone.slice(1)
-  } else if (!phone.startsWith('+')) {
-    phone = '+233' + phone
-  }
+export async function sendSMS(to: string, message: string): Promise<SMSResult> {
+  const apiKey = process.env.ARKESEL_API_KEY
+  const sender = process.env.ARKESEL_SENDER ?? 'SCC2026'
+
+  const phone = normalizePhone(to)
 
   if (!apiKey) {
-    // Development / unconfigured — just log
-    console.log(`[SMS] To: ${phone}\n[SMS] Message: ${message}`)
+    // Development / unconfigured — just log so registration still works
+    console.log(`[SMS:dev] To: ${phone}`)
+    console.log(`[SMS:dev] Message: ${message}`)
     return { ok: true }
   }
 
   try {
-    const params = new URLSearchParams({
-      username,
-      to: phone,
-      message,
-      ...(sender ? { from: sender } : {}),
-    })
-
-    const res = await fetch('https://api.africastalking.com/version1/messaging', {
+    const res = await fetch('https://sms.arkesel.com/api/v2/sms/send', {
       method: 'POST',
       headers: {
-        apiKey,
-        Accept: 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'api-key': apiKey,
+        'Content-Type': 'application/json',
       },
-      body: params.toString(),
+      body: JSON.stringify({
+        sender,
+        message,
+        recipients: [phone],
+      }),
     })
 
-    if (!res.ok) {
-      const text = await res.text()
-      console.error('[SMS] Africa\'s Talking error:', text)
-      return { ok: false, error: text }
+    const json = await res.json().catch(() => ({}))
+
+    if (!res.ok || json.status === 'failed') {
+      const errMsg = json.message ?? json.error ?? `HTTP ${res.status}`
+      console.error('[SMS:arkesel] Error:', errMsg, json)
+      return { ok: false, error: errMsg }
     }
 
     return { ok: true }
   } catch (err) {
-    console.error('[SMS] Network error:', err)
+    console.error('[SMS:arkesel] Network error:', err)
     return { ok: false, error: String(err) }
   }
 }
@@ -75,9 +82,10 @@ export async function sendReservationSMS(params: {
 }): Promise<SMSResult> {
   const { phone, firstName, registrationId, siteUrl } = params
   const message =
-    `Hello ${firstName}! Your SCC2026 reservation is received. ` +
+    `Hello ${firstName}! Your SCC2026 spot is reserved. ` +
     `Booking ID: ${registrationId}. ` +
-    `Conference rate: GH\u20B5 600. View details: ${siteUrl}/my-registration ` +
-    `- Church of Pentecost, Assin Fosu Area`
+    `Conference rate: GH\u20B5600. ` +
+    `Track your reservation: ${siteUrl}/my-registration ` +
+    `- COP Assin Fosu Area`
   return sendSMS(phone, message)
 }

@@ -1,170 +1,332 @@
 import { CONFERENCE } from '@/lib/constants'
 
+const programmeSchedule = [
+  {
+    day: 'Thursday',
+    date: 'April 30',
+    sessions: [
+      { time: 'Morning', title: 'Arrival & Check-in', desc: 'Participants arrive and settle in at their respective venues.' },
+      { time: 'Afternoon', title: 'Opening Ceremony', desc: 'Official opening and welcome address by the Area Head.' },
+      { time: 'Evening', title: 'Praise Night', desc: 'Vibrant worship and praise session to kick off the conference.' },
+    ],
+  },
+  {
+    day: 'Friday',
+    date: 'May 1',
+    sessions: [
+      { time: 'Morning', title: 'Devotion & Teaching Session I', desc: 'Deep dive into the conference theme: Love, Singleness and Marriage.' },
+      { time: 'Afternoon', title: 'Group Discussions', desc: 'Facilitated breakout groups exploring key topics.' },
+      { time: 'Evening', title: 'Candlelight Dinner', desc: 'A special dinner experience included in the conference package.' },
+    ],
+  },
+  {
+    day: 'Saturday',
+    date: 'May 2',
+    sessions: [
+      { time: 'Morning', title: 'Teaching Session II', desc: 'Continued teaching and panel discussions with ministers and facilitators.' },
+      { time: 'Afternoon', title: 'Closing & Commissioning', desc: 'Official closing ceremony, awards, and commissioning of participants.' },
+      { time: 'Evening', title: 'Departure', desc: 'Participants depart with renewed purpose and connections made.' },
+    ],
+  },
+]
+
 export function EventDetails() {
   return (
-    <section id="details" className="bg-[var(--color-surface)] py-14 sm:py-20 px-4 sm:px-6">
-      <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
+    <>
+      {/* ── Section 1: Theme Banner + Detail Cards ── */}
+      <section id="details" className="py-14 sm:py-20 px-4 sm:px-6" style={{ background: '#faf5ff' }}>
+        <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16">
 
-        {/* Theme Banner */}
-        <div
-          className="relative overflow-hidden rounded-2xl sm:rounded-3xl text-white px-6 py-8 sm:px-12 sm:py-14 text-center shadow-2xl"
-          style={{ background: 'linear-gradient(135deg, #1a0030 0%, #3b0764 50%, #5a0080 100%)' }}
-        >
-          <div className="absolute right-0 top-0 opacity-10 pointer-events-none">
-            <svg viewBox="0 0 200 180" className="w-40 h-40 sm:w-64 sm:h-64" fill="white">
-              <path d="M100 160 L15 75 C-5 55 -5 25 15 10 C35 -5 65 0 80 20 L100 45 L120 20 C135 0 165 -5 185 10 C205 25 205 55 185 75 Z" />
-            </svg>
-          </div>
-          <p className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-white/50 font-bold mb-3 sm:mb-4">Conference Theme</p>
-          <h2 className="text-xl sm:text-3xl lg:text-4xl font-black mb-3 leading-tight">
-            &ldquo;{CONFERENCE.theme}&rdquo;
-          </h2>
-          <p className="text-white/60 text-xs sm:text-sm font-medium tracking-wide">
-            {CONFERENCE.scripture}
-          </p>
-        </div>
-
-        {/* Section heading */}
-        <div className="text-center">
-          <h2 className="text-xl sm:text-3xl font-black text-[var(--color-primary)] mb-3">Conference Details</h2>
-          <div className="w-12 h-1 rounded-full mx-auto" style={{ background: 'linear-gradient(90deg, #db0073, #f0329a)' }} />
-          <p className="text-gray-500 max-w-xl mx-auto text-sm sm:text-base mt-4">
-            Join us for an inspiring gathering of singles in the Assin Fosu Area as we celebrate faith, community, and purpose.
-          </p>
-        </div>
-
-        {/* Detail cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {[
-            {
-              icon: (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              ),
-              label: 'Dates',
-              value: `${CONFERENCE.startDate} – ${CONFERENCE.endDate}`,
-            },
-            {
-              icon: (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              ),
-              label: 'Location',
-              value: `${CONFERENCE.area}, Central Region, Ghana`,
-            },
-            {
-              icon: (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              ),
-              label: 'Organiser',
-              value: CONFERENCE.church,
-            },
-            {
-              icon: (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-              ),
-              label: 'Open To',
-              value: 'Singles, Facilitators, Ministers & Guests',
-            },
-            {
-              icon: (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
-              ),
-              label: 'Venues',
-              value: 'PCC (Pentecost Convention Centre) · KNUST',
-            },
-            {
-              icon: (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                </svg>
-              ),
-              label: 'Rate',
-              value: 'GH₵ 600 — Registration is FREE online',
-            },
-          ].map((item) => (
+          {/* Theme Banner */}
+          <div
+            className="relative overflow-hidden rounded-2xl sm:rounded-3xl text-white px-6 py-10 sm:px-14 sm:py-16 text-center shadow-2xl"
+            style={{ background: 'linear-gradient(150deg, #0d001e 0%, #1a0030 25%, #3b0764 60%, #5a0080 100%)' }}
+          >
+            {/* Cross pattern */}
+            <div className="absolute inset-0 bg-cross-pattern opacity-60 pointer-events-none" />
+            {/* Glow */}
             <div
-              key={item.label}
-              className="bg-white rounded-2xl border border-[var(--color-border)] p-4 sm:p-5 flex gap-3 sm:gap-4 items-start shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
-            >
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0"
-                style={{ background: 'linear-gradient(135deg, #3b0764, #db0073)' }}
-              >
-                {item.icon}
-              </div>
-              <div className="min-w-0">
-                <p className="text-xs font-bold text-[var(--color-muted)] uppercase tracking-wide mb-0.5">{item.label}</p>
-                <p className="text-sm font-medium text-gray-800 leading-snug">{item.value}</p>
+              className="absolute top-0 right-0 w-64 h-64 rounded-full pointer-events-none opacity-25"
+              style={{ background: 'radial-gradient(circle, #db0073, transparent 70%)', transform: 'translate(40%, -40%)', filter: 'blur(50px)' }}
+            />
+            {/* Heart watermark */}
+            <div className="absolute right-0 top-0 opacity-10 pointer-events-none overflow-hidden">
+              <svg viewBox="0 0 200 180" className="w-48 h-48 sm:w-72 sm:h-72" fill="white">
+                <path d="M100 160 L15 75 C-5 55 -5 25 15 10 C35 -5 65 0 80 20 L100 45 L120 20 C135 0 165 -5 185 10 C205 25 205 55 185 75 Z" />
+              </svg>
+            </div>
+
+            <div className="relative">
+              <p className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-white/50 font-black mb-4">
+                Conference Theme
+              </p>
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black mb-4 leading-tight">
+                &ldquo;{CONFERENCE.theme}&rdquo;
+              </h2>
+              <p className="text-white/55 text-xs sm:text-sm font-semibold tracking-wide">
+                {CONFERENCE.scripture}
+              </p>
+              <div className="flex flex-wrap justify-center gap-3 mt-6">
+                {['Love', 'Singleness', 'Marriage'].map((word) => (
+                  <span
+                    key={word}
+                    className="px-4 py-1.5 rounded-full text-xs font-bold text-white border border-white/20"
+                    style={{ background: 'rgba(219,0,115,0.25)' }}
+                  >
+                    {word}
+                  </span>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
+          </div>
 
-        {/* Disclaimer card */}
+          {/* Section heading */}
+          <div className="text-center">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-[var(--color-accent)] font-black mb-2">The Essentials</p>
+            <h2 className="text-2xl sm:text-3xl font-black text-[var(--color-primary)] mb-3">Conference Details</h2>
+            <div className="flex items-center justify-center gap-2">
+              <div className="h-px w-12 rounded-full" style={{ background: 'linear-gradient(90deg, transparent, #db0073)' }} />
+              <div className="w-2 h-2 rounded-full" style={{ background: '#db0073' }} />
+              <div className="h-px w-12 rounded-full" style={{ background: 'linear-gradient(90deg, #db0073, transparent)' }} />
+            </div>
+            <p className="text-gray-500 max-w-xl mx-auto text-sm sm:text-base mt-4 leading-relaxed">
+              Join us for an inspiring gathering of singles in the Assin Fosu Area as we celebrate faith, community, and purpose.
+            </p>
+          </div>
+
+          {/* Detail cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {[
+              {
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                ),
+                label: 'Dates',
+                value: `${CONFERENCE.startDate} – ${CONFERENCE.endDate}`,
+                gradient: 'linear-gradient(135deg, #3b0764, #db0073)',
+              },
+              {
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                ),
+                label: 'Location',
+                value: `${CONFERENCE.area}, Central Region, Ghana`,
+                gradient: 'linear-gradient(135deg, #db0073, #f0329a)',
+              },
+              {
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                ),
+                label: 'Organiser',
+                value: CONFERENCE.church,
+                gradient: 'linear-gradient(135deg, #5a0080, #3b0764)',
+              },
+              {
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                ),
+                label: 'Open To',
+                value: 'Singles, Facilitators, Ministers & Guests',
+                gradient: 'linear-gradient(135deg, #db0073, #5a0080)',
+              },
+              {
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                ),
+                label: 'Venues',
+                value: 'PCC (Pentecost Convention Centre) · KNUST',
+                gradient: 'linear-gradient(135deg, #3b0764, #f0329a)',
+              },
+              {
+                icon: (
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                  </svg>
+                ),
+                label: 'Rate',
+                value: 'GH₵ 600 — Registration is FREE online',
+                gradient: 'linear-gradient(135deg, #f0329a, #db0073)',
+              },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="bg-white rounded-2xl border border-[var(--color-border)] p-5 flex gap-4 items-start shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-200 group"
+              >
+                <div
+                  className="w-11 h-11 rounded-xl flex items-center justify-center text-white shrink-0 shadow-md"
+                  style={{ background: item.gradient }}
+                >
+                  {item.icon}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] font-black text-[var(--color-muted)] uppercase tracking-widest mb-1">{item.label}</p>
+                  <p className="text-sm font-semibold text-gray-800 leading-snug">{item.value}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Disclaimer */}
+          <div
+            className="rounded-2xl border p-4 sm:p-5 flex items-start gap-3"
+            style={{ background: 'rgba(219,0,115,0.05)', borderColor: 'rgba(219,0,115,0.2)' }}
+          >
+            <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p className="text-sm font-medium text-gray-700">
+              <span className="font-black text-[var(--color-accent)] uppercase tracking-wide text-xs block mb-0.5">Disclaimer</span>
+              {CONFERENCE.disclaimer}
+            </p>
+          </div>
+
+          {/* Package + Follow-up */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            <div className="rounded-2xl border border-[var(--color-border)] bg-white p-5 sm:p-6 shadow-sm">
+              <div className="flex items-center gap-3 mb-5">
+                <div
+                  className="w-11 h-11 rounded-xl flex items-center justify-center text-white shrink-0 shadow-md"
+                  style={{ background: 'linear-gradient(135deg, #3b0764, #5a0080)' }}
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  </svg>
+                </div>
+                <h3 className="font-black text-gray-900 text-sm sm:text-base">What&apos;s Included</h3>
+              </div>
+              <ul className="space-y-2.5">
+                {CONFERENCE.conferencePackage.map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm text-gray-700">
+                    <div
+                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                      style={{ background: 'linear-gradient(135deg, #db0073, #f0329a)' }}
+                    >
+                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-[var(--color-border)] bg-white p-5 sm:p-6 shadow-sm">
+              <div className="flex items-center gap-3 mb-5">
+                <div
+                  className="w-11 h-11 rounded-xl flex items-center justify-center text-white shrink-0 shadow-md"
+                  style={{ background: 'linear-gradient(135deg, #db0073, #f0329a)' }}
+                >
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <h3 className="font-black text-gray-900 text-sm sm:text-base">Follow-up Programme</h3>
+              </div>
+              <p className="text-sm text-gray-700 leading-relaxed font-medium">{CONFERENCE.followUp}</p>
+              <div
+                className="mt-4 rounded-xl px-3 py-2 text-xs font-semibold text-white/90"
+                style={{ background: 'linear-gradient(135deg, rgba(219,0,115,0.3), rgba(240,50,154,0.3))', border: '1px solid rgba(219,0,115,0.3)' }}
+              >
+                Monday, 4th May 2026 · Area, District & Local Level
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── Section 2: Programme Schedule ── */}
+      <section
+        id="programme"
+        className="py-14 sm:py-20 px-4 sm:px-6 relative overflow-hidden"
+        style={{ background: 'linear-gradient(150deg, #0d001e 0%, #1a0030 30%, #2d0050 70%, #3b0764 100%)' }}
+      >
+        {/* Background pattern */}
+        <div className="absolute inset-0 bg-cross-pattern pointer-events-none" />
         <div
-          className="rounded-2xl border p-4 sm:p-5 flex items-start gap-3"
-          style={{ background: 'rgba(219,0,115,0.05)', borderColor: 'rgba(219,0,115,0.2)' }}
-        >
-          <svg className="w-5 h-5 text-[var(--color-accent)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <p className="text-sm font-medium text-gray-700">
-            <span className="font-bold text-[var(--color-accent)] uppercase tracking-wide text-xs block mb-0.5">Disclaimer</span>
-            {CONFERENCE.disclaimer}
+          className="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none opacity-15"
+          style={{ background: 'radial-gradient(circle, #db0073, transparent 70%)', transform: 'translate(40%, -40%)', filter: 'blur(60px)' }}
+        />
+        <div
+          className="absolute bottom-0 left-0 w-72 h-72 rounded-full pointer-events-none opacity-10"
+          style={{ background: 'radial-gradient(circle, #f0329a, transparent 70%)', transform: 'translate(-40%, 40%)', filter: 'blur(60px)' }}
+        />
+
+        <div className="relative max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-[var(--color-accent)] font-black mb-2">Schedule</p>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-3">Conference Programme</h2>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="h-px w-12 rounded-full" style={{ background: 'linear-gradient(90deg, transparent, #db0073)' }} />
+              <div className="w-2 h-2 rounded-full bg-[#db0073]" />
+              <div className="h-px w-12 rounded-full" style={{ background: 'linear-gradient(90deg, #db0073, transparent)' }} />
+            </div>
+            <p className="text-white/50 text-sm max-w-md mx-auto">
+              Three transformative days of worship, teaching, and fellowship.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {programmeSchedule.map((day, dayIdx) => (
+              <div key={day.day} className="space-y-1">
+                {/* Day header */}
+                <div
+                  className="rounded-2xl px-5 py-4 mb-4 border border-white/10"
+                  style={{ background: dayIdx === 1 ? 'linear-gradient(135deg, rgba(219,0,115,0.3), rgba(240,50,154,0.2))' : 'rgba(255,255,255,0.06)' }}
+                >
+                  <p className="text-[10px] uppercase tracking-widest text-white/50 font-bold">{day.day}</p>
+                  <p className="text-xl font-black text-white">{day.date}</p>
+                  {dayIdx === 1 && (
+                    <span
+                      className="inline-block text-[10px] font-bold text-white/80 uppercase tracking-wider mt-1 px-2 py-0.5 rounded-full border border-white/20"
+                      style={{ background: 'rgba(219,0,115,0.3)' }}
+                    >
+                      Main Day
+                    </span>
+                  )}
+                </div>
+
+                {/* Sessions */}
+                <div className="space-y-3">
+                  {day.sessions.map((session, sIdx) => (
+                    <div
+                      key={sIdx}
+                      className="rounded-xl border border-white/10 p-4 transition-all hover:border-white/20"
+                      style={{ background: 'rgba(255,255,255,0.04)' }}
+                    >
+                      <div className="flex items-center gap-2 mb-2">
+                        <div
+                          className="w-1.5 h-1.5 rounded-full shrink-0"
+                          style={{ background: dayIdx === 1 ? '#f0329a' : '#7c6a8b' }}
+                        />
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">{session.time}</span>
+                      </div>
+                      <p className="text-sm font-bold text-white mb-1">{session.title}</p>
+                      <p className="text-xs text-white/50 leading-relaxed">{session.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center text-white/30 text-xs mt-10">
+            * Programme subject to adjustments. Final schedule will be shared with confirmed participants.
           </p>
         </div>
-
-        {/* Conference package + follow-up */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-          <div className="rounded-2xl border border-[var(--color-border)] bg-white p-5 sm:p-6 shadow-sm">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0"
-                style={{ background: 'linear-gradient(135deg, #3b0764, #5a0080)' }}>
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                </svg>
-              </div>
-              <h3 className="font-bold text-gray-900 text-sm sm:text-base">Conference Package</h3>
-            </div>
-            <ul className="space-y-2">
-              {CONFERENCE.conferencePackage.map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-sm text-gray-700">
-                  <svg className="w-4 h-4 text-[var(--color-accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="rounded-2xl border border-[var(--color-border)] bg-white p-5 sm:p-6 shadow-sm">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-white shrink-0"
-                style={{ background: 'linear-gradient(135deg, #db0073, #f0329a)' }}>
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="font-bold text-gray-900 text-sm sm:text-base">Follow-up Programme</h3>
-            </div>
-            <p className="text-sm text-gray-700 leading-relaxed">{CONFERENCE.followUp}</p>
-          </div>
-        </div>
-
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
-
-

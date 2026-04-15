@@ -11,6 +11,25 @@ interface Step2Props {
   onBack: () => void
 }
 
+const venueIcons: Record<string, React.ReactNode> = {
+  PCC: (
+    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+    </svg>
+  ),
+  KNUST: (
+    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+    </svg>
+  ),
+}
+
+const venueTaglines: Record<string, string> = {
+  PCC: 'Pentecost Convention Centre',
+  KNUST: 'Kwame Nkrumah Univ. of Science & Technology',
+}
+
 export function Step2VenueSelection({ data, onNext, onBack }: Step2Props) {
   const [selected, setSelected] = useState<string>(data.venue ?? '')
   const [error, setError] = useState<string>('')
@@ -28,9 +47,14 @@ export function Step2VenueSelection({ data, onNext, onBack }: Step2Props) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <p className="text-sm font-medium text-gray-700 mb-3">
-          Which venue will you be attending from? <span className="text-red-500">*</span>
-        </p>
+        <div className="mb-5">
+          <h3 className="text-base font-black text-gray-900 mb-1">Choose Your Venue</h3>
+          <p className="text-sm text-gray-500">
+            Which venue will you be attending from?{' '}
+            <span className="text-[var(--color-accent)] font-bold">*</span>
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {VENUES.map((venue) => {
             const isSelected = selected === venue.value
@@ -43,34 +67,90 @@ export function Step2VenueSelection({ data, onNext, onBack }: Step2Props) {
                   setError('')
                 }}
                 className={[
-                  'relative flex flex-col items-center gap-3 rounded-xl border-2 p-6 text-left',
-                  'transition-all duration-150 cursor-pointer',
+                  'relative flex flex-col items-center gap-4 rounded-2xl border-2 p-7 text-center',
+                  'transition-all duration-200 cursor-pointer group',
                   isSelected
-                    ? 'border-[var(--color-primary)] bg-[var(--color-surface)] shadow-sm'
-                    : 'border-[var(--color-border)] bg-white hover:border-[var(--color-primary-light)] hover:bg-[var(--color-surface)]',
+                    ? 'border-[var(--color-primary)] shadow-xl shadow-purple-900/15'
+                    : 'border-[var(--color-border)] bg-white hover:border-[var(--color-primary-light)] hover:shadow-md hover:-translate-y-0.5',
                 ].join(' ')}
+                style={isSelected ? { background: 'linear-gradient(135deg, rgba(59,7,100,0.04), rgba(219,0,115,0.04))' } : { background: '#fff' }}
               >
+                {/* Selected checkmark */}
                 {isSelected && (
-                  <div className="absolute top-3 right-3 w-5 h-5 rounded-full bg-[var(--color-primary)] flex items-center justify-center">
-                    <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <div
+                    className="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center justify-center shadow-md"
+                    style={{ background: 'linear-gradient(135deg, #3b0764, #db0073)' }}
+                  >
+                    <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                 )}
+
+                {/* Icon */}
                 <div
                   className={[
-                    'text-2xl font-bold',
-                    isSelected ? 'text-[var(--color-primary)]' : 'text-gray-700',
+                    'w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-200',
+                    isSelected ? 'text-white shadow-lg shadow-pink-900/30' : 'text-[var(--color-muted)] bg-[var(--color-surface)] group-hover:text-[var(--color-primary)]',
                   ].join(' ')}
+                  style={isSelected ? { background: 'linear-gradient(135deg, #3b0764, #db0073)' } : {}}
                 >
-                  {venue.label}
+                  {venueIcons[venue.value] ?? (
+                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    </svg>
+                  )}
                 </div>
-                <p className="text-xs text-center text-gray-500">{venue.description}</p>
+
+                {/* Venue name */}
+                <div>
+                  <p
+                    className={[
+                      'text-2xl font-black tracking-tight mb-1',
+                      isSelected ? 'text-[var(--color-primary)]' : 'text-gray-800',
+                    ].join(' ')}
+                  >
+                    {venue.value}
+                  </p>
+                  <p className="text-xs text-gray-500 leading-snug font-medium">
+                    {venueTaglines[venue.value] ?? venue.description}
+                  </p>
+                </div>
+
+                {/* Selected indicator bar */}
+                {isSelected && (
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl"
+                    style={{ background: 'linear-gradient(90deg, #3b0764, #db0073)' }}
+                  />
+                )}
               </button>
             )
           })}
         </div>
-        {error && <p className="mt-2 text-xs text-red-600">{error}</p>}
+
+        {error && (
+          <p className="mt-3 text-xs text-red-600 flex items-center gap-1.5">
+            <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            {error}
+          </p>
+        )}
+
+        {/* Info note */}
+        <div
+          className="mt-5 rounded-xl border p-3.5 flex items-start gap-3"
+          style={{ background: 'rgba(59,7,100,0.04)', borderColor: 'rgba(59,7,100,0.15)' }}
+        >
+          <svg className="w-4 h-4 text-[var(--color-primary)] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p className="text-xs text-gray-600 leading-relaxed">
+            Both venues are fully equipped for the conference. Select the one closest or most convenient for you.
+            Accommodation is included in the GH₵ 600 conference package.
+          </p>
+        </div>
       </div>
 
       <div className="flex justify-between pt-2">
