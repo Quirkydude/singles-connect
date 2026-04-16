@@ -35,7 +35,7 @@ export function RegisterCTA() {
         </h2>
 
         <p className="text-white/65 text-sm sm:text-lg mb-3 max-w-xl mx-auto leading-relaxed">
-          Secure your place at the conference by completing the online reservation form. The conference team will follow up with payment details.
+          Secure your free spot at the conference by completing the online reservation form. You&apos;ll receive confirmation after registering.
         </p>
         <p className="text-white/45 text-xs sm:text-sm mb-10 font-semibold tracking-wide">
           {CONFERENCE.startDate} · {CONFERENCE.venue}

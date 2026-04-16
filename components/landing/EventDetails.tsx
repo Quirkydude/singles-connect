@@ -128,7 +128,7 @@ export function EventDetails() {
                   </svg>
                 ),
                 label: 'Venue',
-                value: 'Station Central, Assin Fosu',
+                value: CONFERENCE.venue,
                 gradient: 'linear-gradient(135deg, #3b0764, #f0329a)',
               },
               {
@@ -138,7 +138,7 @@ export function EventDetails() {
                   </svg>
                 ),
                 label: 'Registration',
-                value: 'FREE — Admission is completely free',
+                value: `${CONFERENCE.conferenceRate} — Admission is completely free`,
                 gradient: 'linear-gradient(135deg, #f0329a, #db0073)',
               },
             ].map((item) => (

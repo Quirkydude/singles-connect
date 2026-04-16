@@ -52,6 +52,7 @@ export const CONFERENCE = {
   name: 'Singles Connect Conference 2026',
   area: 'Assin Fosu Area',
   church: 'The Church of Pentecost',
+  year: '2026',
   startDate: 'Monday, 4th May 2026',
   endDate: 'Monday, 4th May 2026',
   dateShort: 'MON 4TH MAY 2026',

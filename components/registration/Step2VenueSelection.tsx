@@ -104,7 +104,7 @@ export function Step2VenueSelection({ data, onNext, onBack }: Step2Props) {
                       isSelected ? 'text-[var(--color-primary)]' : 'text-gray-800',
                     ].join(' ')}
                   >
-                    {venue.value}
+                    {venue.label}
                   </p>
                   <p className="text-xs text-gray-500 leading-snug font-medium">
                     {venueTaglines[venue.value] ?? venue.description}
@@ -141,7 +141,7 @@ export function Step2VenueSelection({ data, onNext, onBack }: Step2Props) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <p className="text-xs text-gray-600 leading-relaxed">
-            Confirm your attendance at Station Central, Assin Fosu. Admission to the conference is completely free.
+            Confirm your attendance at {venueTaglines.STATION_CENTRAL}. Admission to the conference is completely free.
           </p>
         </div>
       </div>

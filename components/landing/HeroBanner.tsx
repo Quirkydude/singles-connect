@@ -83,7 +83,7 @@ export function HeroBanner() {
                 style={{ background: 'linear-gradient(135deg, rgba(219,0,115,0.95), rgba(240,50,154,0.95))', backdropFilter: 'blur(8px)' }}
               >
                 <p className="text-white/80 text-[10px] font-bold uppercase tracking-wider">Registration</p>
-                <p className="text-white text-2xl font-black leading-none mt-0.5">FREE</p>
+                <p className="text-white text-2xl font-black leading-none mt-0.5">{CONFERENCE.conferenceRate}</p>
               </div>
 
               {/* Floating date badge */}
@@ -91,8 +91,8 @@ export function HeroBanner() {
                 className="absolute -top-4 -right-4 sm:-top-5 sm:-right-6 rounded-2xl px-3 py-2 shadow-xl border border-white/15"
                 style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(12px)' }}
               >
-                <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest">May 4</p>
-                <p className="text-white text-sm font-black leading-none mt-0.5">2026</p>
+                <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest">{CONFERENCE.dateShort}</p>
+                <p className="text-white text-sm font-black leading-none mt-0.5">{CONFERENCE.year}</p>
               </div>
             </div>
           </div>
