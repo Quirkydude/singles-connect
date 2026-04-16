@@ -82,8 +82,8 @@ export function HeroBanner() {
                 className="absolute -bottom-4 -left-4 sm:-bottom-5 sm:-left-6 rounded-2xl px-4 py-3 shadow-2xl border border-white/20"
                 style={{ background: 'linear-gradient(135deg, rgba(219,0,115,0.95), rgba(240,50,154,0.95))', backdropFilter: 'blur(8px)' }}
               >
-                <p className="text-white/80 text-[10px] font-bold uppercase tracking-wider">Conference Rate</p>
-                <p className="text-white text-2xl font-black leading-none mt-0.5">GH₵ 600</p>
+                <p className="text-white/80 text-[10px] font-bold uppercase tracking-wider">Registration</p>
+                <p className="text-white text-2xl font-black leading-none mt-0.5">FREE</p>
               </div>
 
               {/* Floating date badge */}
@@ -91,7 +91,7 @@ export function HeroBanner() {
                 className="absolute -top-4 -right-4 sm:-top-5 sm:-right-6 rounded-2xl px-3 py-2 shadow-xl border border-white/15"
                 style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(12px)' }}
               >
-                <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest">Apr 30 – May 2</p>
+                <p className="text-white/60 text-[9px] font-bold uppercase tracking-widest">May 4</p>
                 <p className="text-white text-sm font-black leading-none mt-0.5">2026</p>
               </div>
             </div>
@@ -142,12 +142,12 @@ export function HeroBanner() {
             <div className="flex flex-col gap-2">
               {[
                 {
-                  icon: (
+                   icon: (
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                  ),
-                  text: 'Thursday 30 April – Saturday 2 May 2026',
+                   ),
+                  text: 'Monday 4 May 2026',
                 },
                 {
                   icon: (
@@ -156,7 +156,7 @@ export function HeroBanner() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   ),
-                  text: 'PCC | KNUST · Assin Fosu, Central Region',
+                  text: 'Station Central · Assin Fosu, Central Region',
                 },
                 {
                   icon: (

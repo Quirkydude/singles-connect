@@ -12,22 +12,16 @@ interface Step2Props {
 }
 
 const venueIcons: Record<string, React.ReactNode> = {
-  PCC: (
+  STATION_CENTRAL: (
     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-    </svg>
-  ),
-  KNUST: (
-    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
   ),
 }
 
 const venueTaglines: Record<string, string> = {
-  PCC: 'Pentecost Convention Centre',
-  KNUST: 'Kwame Nkrumah Univ. of Science & Technology',
+  STATION_CENTRAL: 'Station Central, Assin Fosu',
 }
 
 export function Step2VenueSelection({ data, onNext, onBack }: Step2Props) {
@@ -48,14 +42,14 @@ export function Step2VenueSelection({ data, onNext, onBack }: Step2Props) {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
         <div className="mb-5">
-          <h3 className="text-base font-black text-gray-900 mb-1">Choose Your Venue</h3>
+          <h3 className="text-base font-black text-gray-900 mb-1">Confirm Your Venue</h3>
           <p className="text-sm text-gray-500">
-            Which venue will you be attending from?{' '}
+            Confirm you will be attending at the venue below.{' '}
             <span className="text-[var(--color-accent)] font-bold">*</span>
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           {VENUES.map((venue) => {
             const isSelected = selected === venue.value
             return (
@@ -147,8 +141,7 @@ export function Step2VenueSelection({ data, onNext, onBack }: Step2Props) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <p className="text-xs text-gray-600 leading-relaxed">
-            Both venues are fully equipped for the conference. Select the one closest or most convenient for you.
-            Accommodation is included in the GH₵ 600 conference package.
+            Confirm your attendance at Station Central, Assin Fosu. Admission to the conference is completely free.
           </p>
         </div>
       </div>
