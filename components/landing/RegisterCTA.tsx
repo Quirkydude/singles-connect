@@ -35,10 +35,10 @@ export function RegisterCTA() {
         </h2>
 
         <p className="text-white/65 text-sm sm:text-lg mb-3 max-w-xl mx-auto leading-relaxed">
-          Secure your place at the conference by completing the online reservation form. The conference team will follow up with payment details.
+          Secure your free spot at the conference by completing the online reservation form. You&apos;ll receive confirmation after registering.
         </p>
         <p className="text-white/45 text-xs sm:text-sm mb-10 font-semibold tracking-wide">
-          {CONFERENCE.startDate} – {CONFERENCE.endDate}
+          {CONFERENCE.startDate} · {CONFERENCE.venue}
         </p>
 
         {/* Feature highlights */}
@@ -66,10 +66,7 @@ export function RegisterCTA() {
             className="flex sm:inline-flex items-center justify-center gap-3 rounded-2xl px-10 py-5 text-base sm:text-lg font-black text-white transition-all hover:opacity-90 active:scale-95 shadow-2xl shadow-pink-900/60 w-full sm:w-auto"
             style={{ background: 'linear-gradient(135deg, #c70068, #f0329a)' }}
           >
-            RESERVE YOUR SPOT
-            <span className="bg-white/20 rounded-lg px-2 py-0.5 text-sm font-bold ml-1">
-              {CONFERENCE.conferenceRate}
-            </span>
+            RESERVE YOUR SPOT — FREE
             <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>

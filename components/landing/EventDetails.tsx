@@ -2,30 +2,13 @@ import { CONFERENCE } from '@/lib/constants'
 
 const programmeSchedule = [
   {
-    day: 'Thursday',
-    date: 'April 30',
+    day: 'Monday',
+    date: 'May 4',
     sessions: [
-      { time: 'Morning', title: 'Arrival & Check-in', desc: 'Participants arrive and settle in at their respective venues.' },
-      { time: 'Afternoon', title: 'Opening Ceremony', desc: 'Official opening and welcome address by the Area Head.' },
-      { time: 'Evening', title: 'Praise Night', desc: 'Vibrant worship and praise session to kick off the conference.' },
-    ],
-  },
-  {
-    day: 'Friday',
-    date: 'May 1',
-    sessions: [
-      { time: 'Morning', title: 'Devotion & Teaching Session I', desc: 'Deep dive into the conference theme: Love, Singleness and Marriage.' },
-      { time: 'Afternoon', title: 'Group Discussions', desc: 'Facilitated breakout groups exploring key topics.' },
-      { time: 'Evening', title: 'Candlelight Dinner', desc: 'A special dinner experience included in the conference package.' },
-    ],
-  },
-  {
-    day: 'Saturday',
-    date: 'May 2',
-    sessions: [
-      { time: 'Morning', title: 'Teaching Session II', desc: 'Continued teaching and panel discussions with ministers and facilitators.' },
-      { time: 'Afternoon', title: 'Closing & Commissioning', desc: 'Official closing ceremony, awards, and commissioning of participants.' },
-      { time: 'Evening', title: 'Departure', desc: 'Participants depart with renewed purpose and connections made.' },
+      { time: 'Morning', title: 'Arrival & Registration', desc: 'Participants arrive and register at Station Central, Assin Fosu.' },
+      { time: 'Mid-Morning', title: 'Opening Ceremony', desc: 'Official opening, welcome address and praise & worship.' },
+      { time: 'Afternoon', title: 'Teaching Sessions & Group Discussions', desc: 'Deep dive into the conference theme with breakout groups exploring key topics.' },
+      { time: 'Evening', title: 'Closing Ceremony & Networking', desc: 'Official closing, commissioning of participants, and fellowship time.' },
     ],
   },
 ]
@@ -90,7 +73,7 @@ export function EventDetails() {
               <div className="h-px w-12 rounded-full" style={{ background: 'linear-gradient(90deg, #db0073, transparent)' }} />
             </div>
             <p className="text-gray-500 max-w-xl mx-auto text-sm sm:text-base mt-4 leading-relaxed">
-              Join us for an inspiring gathering of singles in the Assin Fosu Area as we celebrate faith, community, and purpose.
+              Join us for an inspiring gathering of singles in the Assin Fosu Area as we celebrate faith, community, and purpose. Admission is completely free.
             </p>
           </div>
 
@@ -103,8 +86,8 @@ export function EventDetails() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 ),
-                label: 'Dates',
-                value: `${CONFERENCE.startDate} – ${CONFERENCE.endDate}`,
+                label: 'Date',
+                value: CONFERENCE.startDate,
                 gradient: 'linear-gradient(135deg, #3b0764, #db0073)',
               },
               {
@@ -141,11 +124,11 @@ export function EventDetails() {
               {
                 icon: (
                   <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                   </svg>
                 ),
-                label: 'Venues',
-                value: 'PCC (Pentecost Convention Centre) · KNUST',
+                label: 'Venue',
+                value: CONFERENCE.venue,
                 gradient: 'linear-gradient(135deg, #3b0764, #f0329a)',
               },
               {
@@ -154,8 +137,8 @@ export function EventDetails() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                   </svg>
                 ),
-                label: 'Rate',
-                value: 'GH₵ 600 — Registration is FREE online',
+                label: 'Registration',
+                value: `${CONFERENCE.conferenceRate} — Admission is completely free`,
                 gradient: 'linear-gradient(135deg, #f0329a, #db0073)',
               },
             ].map((item) => (
@@ -191,57 +174,34 @@ export function EventDetails() {
             </p>
           </div>
 
-          {/* Package + Follow-up */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-            <div className="rounded-2xl border border-[var(--color-border)] bg-white p-5 sm:p-6 shadow-sm">
-              <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center text-white shrink-0 shadow-md"
-                  style={{ background: 'linear-gradient(135deg, #3b0764, #5a0080)' }}
-                >
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                  </svg>
-                </div>
-                <h3 className="font-black text-gray-900 text-sm sm:text-base">What&apos;s Included</h3>
-              </div>
-              <ul className="space-y-2.5">
-                {CONFERENCE.conferencePackage.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-sm text-gray-700">
-                    <div
-                      className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
-                      style={{ background: 'linear-gradient(135deg, #db0073, #f0329a)' }}
-                    >
-                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="font-medium">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="rounded-2xl border border-[var(--color-border)] bg-white p-5 sm:p-6 shadow-sm">
-              <div className="flex items-center gap-3 mb-5">
-                <div
-                  className="w-11 h-11 rounded-xl flex items-center justify-center text-white shrink-0 shadow-md"
-                  style={{ background: 'linear-gradient(135deg, #db0073, #f0329a)' }}
-                >
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="font-black text-gray-900 text-sm sm:text-base">Follow-up Programme</h3>
-              </div>
-              <p className="text-sm text-gray-700 leading-relaxed font-medium">{CONFERENCE.followUp}</p>
+          {/* Package */}
+          <div className="rounded-2xl border border-[var(--color-border)] bg-white p-5 sm:p-6 shadow-sm">
+            <div className="flex items-center gap-3 mb-5">
               <div
-                className="mt-4 rounded-xl px-3 py-2 text-xs font-semibold text-white/90"
-                style={{ background: 'linear-gradient(135deg, rgba(219,0,115,0.3), rgba(240,50,154,0.3))', border: '1px solid rgba(219,0,115,0.3)' }}
+                className="w-11 h-11 rounded-xl flex items-center justify-center text-white shrink-0 shadow-md"
+                style={{ background: 'linear-gradient(135deg, #3b0764, #5a0080)' }}
               >
-                Monday, 4th May 2026 · Area, District & Local Level
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
               </div>
+              <h3 className="font-black text-gray-900 text-sm sm:text-base">What&apos;s Included</h3>
             </div>
+            <ul className="space-y-2.5">
+              {CONFERENCE.conferencePackage.map((item) => (
+                <li key={item} className="flex items-center gap-3 text-sm text-gray-700">
+                  <div
+                    className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
+                    style={{ background: 'linear-gradient(135deg, #db0073, #f0329a)' }}
+                  >
+                    <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span className="font-medium">{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
         </div>
@@ -274,32 +234,30 @@ export function EventDetails() {
               <div className="h-px w-12 rounded-full" style={{ background: 'linear-gradient(90deg, #db0073, transparent)' }} />
             </div>
             <p className="text-white/50 text-sm max-w-md mx-auto">
-              Three transformative days of worship, teaching, and fellowship.
+              A day of worship, teaching, and fellowship.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {programmeSchedule.map((day, dayIdx) => (
+          <div className="grid grid-cols-1 gap-6">
+            {programmeSchedule.map((day) => (
               <div key={day.day} className="space-y-1">
                 {/* Day header */}
                 <div
                   className="rounded-2xl px-5 py-4 mb-4 border border-white/10"
-                  style={{ background: dayIdx === 1 ? 'linear-gradient(135deg, rgba(219,0,115,0.3), rgba(240,50,154,0.2))' : 'rgba(255,255,255,0.06)' }}
+                  style={{ background: 'linear-gradient(135deg, rgba(219,0,115,0.3), rgba(240,50,154,0.2))' }}
                 >
                   <p className="text-[10px] uppercase tracking-widest text-white/50 font-bold">{day.day}</p>
                   <p className="text-xl font-black text-white">{day.date}</p>
-                  {dayIdx === 1 && (
-                    <span
-                      className="inline-block text-[10px] font-bold text-white/80 uppercase tracking-wider mt-1 px-2 py-0.5 rounded-full border border-white/20"
-                      style={{ background: 'rgba(219,0,115,0.3)' }}
-                    >
-                      Main Day
-                    </span>
-                  )}
+                  <span
+                    className="inline-block text-[10px] font-bold text-white/80 uppercase tracking-wider mt-1 px-2 py-0.5 rounded-full border border-white/20"
+                    style={{ background: 'rgba(219,0,115,0.3)' }}
+                  >
+                    {CONFERENCE.area}
+                  </span>
                 </div>
 
                 {/* Sessions */}
-                <div className="space-y-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                   {day.sessions.map((session, sIdx) => (
                     <div
                       key={sIdx}
@@ -309,7 +267,7 @@ export function EventDetails() {
                       <div className="flex items-center gap-2 mb-2">
                         <div
                           className="w-1.5 h-1.5 rounded-full shrink-0"
-                          style={{ background: dayIdx === 1 ? '#f0329a' : '#7c6a8b' }}
+                          style={{ background: '#f0329a' }}
                         />
                         <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">{session.time}</span>
                       </div>

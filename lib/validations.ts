@@ -14,7 +14,7 @@ export const step1Schema = z.object({
 })
 
 export const step2Schema = z.object({
-  venue: z.enum(['PCC', 'KNUST'], { message: 'Please select a venue' }),
+  venue: z.enum(['STATION_CENTRAL'], { message: 'Please select a venue' }),
 })
 
 export const registrationSchema = step1Schema.merge(step2Schema).extend({
