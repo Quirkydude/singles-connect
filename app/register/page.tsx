@@ -51,7 +51,7 @@ export default function RegisterPage() {
           <div className="w-16 sm:w-24 h-auto rounded-xl overflow-hidden border-2 border-white/20 shadow-xl shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://github.com/user-attachments/assets/15cfa367-110e-4e23-a87e-82cd6ebc2280"
+              src={CONFERENCE.flyerUrl}
               alt="Conference Flyer"
               className="w-full h-auto block"
             />
