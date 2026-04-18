@@ -70,7 +70,7 @@ export function HeroBanner() {
               <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl shadow-black/70">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="https://github.com/user-attachments/assets/15cfa367-110e-4e23-a87e-82cd6ebc2280"
+                  src="https://github.com/user-attachments/assets/21ebe8f9-f3fb-41f5-b00c-6d9b89155a32"
                   alt="Singles Connect Conference 2026 Official Flyer"
                   className="w-full h-auto block"
                   loading="eager"
