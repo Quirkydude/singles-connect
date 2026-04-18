@@ -34,9 +34,11 @@ export function Step3Review({ step1, step2, onSubmit, onBack, isSubmitting }: St
           <div><dt className="text-gray-500">Participant Type</dt><dd className="font-medium text-gray-900">{fieldLabel(step1.participantType, PARTICIPANT_TYPES)}</dd></div>
           {step1.title && <div><dt className="text-gray-500">Title</dt><dd className="font-medium text-gray-900">{fieldLabel(step1.title, TITLES)}</dd></div>}
           {step1.designation && <div><dt className="text-gray-500">Designation</dt><dd className="font-medium text-gray-900">{fieldLabel(step1.designation, DESIGNATIONS)}</dd></div>}
-          <div><dt className="text-gray-500">Region</dt><dd className="font-medium text-gray-900">Central</dd></div>
-          <div><dt className="text-gray-500">Area</dt><dd className="font-medium text-gray-900">Assin Fosu</dd></div>
-          <div className="sm:col-span-2"><dt className="text-gray-500">Church Membership</dt><dd className="font-medium text-gray-900">{step1.isNonCOP ? 'Not a Church of Pentecost member' : 'Church of Pentecost member'}</dd></div>
+          <div className="col-span-full grid grid-cols-2 gap-x-8">
+            <div><dt className="text-gray-500">Region</dt><dd className="font-medium text-gray-900">Central</dd></div>
+            <div><dt className="text-gray-500">Area</dt><dd className="font-medium text-gray-900">Assin Fosu</dd></div>
+          </div>
+          <div className="col-span-full"><dt className="text-gray-500">Church Membership</dt><dd className="font-medium text-gray-900">{step1.isNonCOP ? 'Not a Church of Pentecost member' : 'Church of Pentecost member'}</dd></div>
         </dl>
       </Card>
 
