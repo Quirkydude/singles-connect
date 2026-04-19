@@ -65,5 +65,5 @@ export const CONFERENCE = {
   conferencePackage: ['Refreshments', 'Conference Souvenirs', 'Networking & Fellowship'],
   conferenceRate: 'FREE',
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://singles-connect.vercel.app',
-  flyerUrl: 'https://github.com/user-attachments/assets/21ebe8f9-f3fb-41f5-b00c-6d9b89155a32',
+  flyerUrl: '/images/singles-connect-conference-2026-flyer.jpg',
 }
