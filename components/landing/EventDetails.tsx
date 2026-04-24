@@ -5,10 +5,28 @@ const programmeSchedule = [
     day: 'Monday',
     date: 'May 4',
     sessions: [
-      { time: 'Morning', title: 'Arrival & Registration', desc: 'Participants arrive and register at Station Central, Assin Fosu.' },
-      { time: 'Mid-Morning', title: 'Opening Ceremony', desc: 'Official opening, welcome address and praise & worship.' },
-      { time: 'Afternoon', title: 'Teaching Sessions & Group Discussions', desc: 'Deep dive into the conference theme with breakout groups exploring key topics.' },
-      { time: 'Evening', title: 'Closing Ceremony & Networking', desc: 'Official closing, commissioning of participants, and fellowship time.' },
+    sessions: [
+  { 
+    time: 'Evening', 
+    title: 'Arrival & Registration', 
+    desc: 'Participants arrive, register, and settle in for the service.' 
+  },
+  { 
+    time: 'Evening', 
+    title: 'Opening & Praise Session', 
+    desc: 'Welcome address followed by an uplifting time of praise and worship.' 
+  },
+  { 
+    time: 'Evening', 
+    title: 'Main Teaching & Engagement', 
+    desc: 'A focused teaching session with interactive moments for reflection and connection.' 
+  },
+  { 
+    time: 'Evening', 
+    title: 'Closing & Fellowship', 
+    desc: 'Closing prayers, commissioning, and a time to connect and build relationships.' 
+  },
+],  
     ],
   },
 ]
