@@ -28,7 +28,7 @@ export const DESIGNATIONS = [
   { value: 'deaconess', label: 'Deaconess' },
   { value: 'minister', label: 'Minister' },
   { value: 'area_head', label: 'Area Head' },
-  { value: 'district_pastor': 'District Pastor'},
+  { value: 'district_pastor', label: 'District Pastor'},
   { value: 'other', label: 'Other' },
 ]
 
