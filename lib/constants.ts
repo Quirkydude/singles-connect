@@ -24,13 +24,11 @@ export const TITLES = [
 
 export const DESIGNATIONS = [
   { value: 'member', label: 'Member' },
-  { value: 'local_elder', label: 'Local Elder' },
-  { value: 'district_elder', label: 'District Elder' },
   { value: 'deacon', label: 'Deacon' },
   { value: 'deaconess', label: 'Deaconess' },
   { value: 'minister', label: 'Minister' },
-  { value: 'district_minister', label: 'District Minister' },
   { value: 'area_head', label: 'Area Head' },
+  { value: 'district_pastor': 'District Pastor'},
   { value: 'other', label: 'Other' },
 ]
 
